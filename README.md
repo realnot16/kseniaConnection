@@ -4,16 +4,35 @@ The **Ksenia Connection Integration** allows you to connect and manage your Ksen
 
 
 ## Features
-- Seamless connection to your Ksenia device.
+- Seamless connection to your Lares 4.0 unit.
 - SSL support for secure communication.
 - Supported components: outputs, zones, partitions, scenarios, powerlines.
+
+## Screenshots
+Here are some screenshots showcasing a basic use for the integration:
+
+<details>
+<summary>Click to expand screenshots</summary>
+   
+![Screenshot 1](images/domus.png)
+
+![Screenshot 2](images/consumi.png)
+
+![Screenshot 3](images/scenari.png)
+
+![Screenshot 4](images/luci.png)
+
+</details>
+
+
 
 ## Installation
 
 ### Manual Installation
-1. Clone or download this repository.
-2. Copy the `custom_components/kseniaConnection` folder to the `custom_components` directory in your Home Assistant configuration folder.
-3. Restart Home Assistant.
+1. Get in touch with the owner for repository permissions. (bennypadula@gmail.com)
+2. Clone or download the repository.
+3. Copy the `kseniaConnection` folder to the `custom_components` directory in your Home Assistant configuration folder.
+4. Restart Home Assistant.
 
 ## Configuration
 
