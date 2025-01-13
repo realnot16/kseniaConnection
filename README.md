@@ -45,16 +45,6 @@ Here are some screenshots showcasing a basic use for the integration:
    - **Use SSL**: Enable this option if your device supports SSL.
 4. Click **Submit** to test and save the connection.
 
-### Modifying Settings
-You can modify the integration settings without reinstalling:
-1. Go to **Settings** → **Devices & Services**.
-2. Find the "Ksenia Connection" integration and click **Configure**.
-3. Update the desired settings:
-   - **Lares IP**
-   - **PIN**
-   - **Use SSL**
-4. Save the changes.
-
 ## Security
 
 - This integration may lower the security of your alarm system. Please be aware of it!
