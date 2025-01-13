@@ -64,6 +64,7 @@ You can modify the integration settings without reinstalling:
 ### Common Issues
 - **Connection Failed**: Ensure that the IP address, PIN, and SSL setting are correct. Verify that your Ksenia device is reachable on the network.
 - **SSL Errors**: If SSL is enabled, ensure the Ksenia device supports secure connections.
+- **Library error**: be sure that [kseniaWebsocketLibrary](https://github.com/realnot16/kseniaWebsocketLibrary) is installed. If not, try ```pip install kseniaWebsocketLibrary```
 
 ### Logs
 To enable debug logging, add the following to your `configuration.yaml`:
