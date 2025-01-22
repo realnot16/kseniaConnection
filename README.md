@@ -29,7 +29,7 @@ Here are some screenshots showcasing a basic use for the integration:
 ## Installation
 
 ### Manual Installation
-1. Get in touch with the owner for repository permissions. (bennypadula@gmail.com)
+1. Get in touch with the owner for repository permissions. (benedetto.padula@gmail.com)
 2. Clone or download the repository.
 3. Copy the `kseniaConnection` folder to the `custom_components` directory in your Home Assistant configuration folder.
 4. Restart Home Assistant.
