@@ -6,7 +6,7 @@ The **Ksenia Connection Integration** allows you to connect and manage your Ksen
 ## Features
 - Seamless connection to your Lares 4.0 unit.
 - SSL support for secure communication.
-- Supported components: outputs, zones, partitions, scenarios, powerlines.
+- Supported components: outputs, zones, partitions, scenarios, powerlines and system info.
 
 ## Screenshots
 Here are some screenshots showcasing a basic use for the integration:
@@ -22,6 +22,7 @@ Here are some screenshots showcasing a basic use for the integration:
 
 ![Screenshot 4](images/luci.png)
 
+![Screenshot 5](images/sistema.png)
 </details>
 
 
@@ -45,6 +46,29 @@ Here are some screenshots showcasing a basic use for the integration:
    - **Use SSL**: Enable this option if your device supports SSL.
 4. Click **Submit** to test and save the connection.
 
+### Updating the library
+
+The integration automatically checks for library updates and installs the latest available version. In case of errors, manually verify the installed version and update it if necessary.
+
+
+**To update the kseniaWebsocketLibrary library to the latest available version, follow these steps:**
+
+Access the Home Assistant container or the machine where Home Assistant is running
+
+ Open a terminal and connect to the container by running:
+```sh
+docker exec -it ha-test sh
+```
+
+Run the following command to force the update while ignoring the pip cache:
+
+```sh
+pip install --upgrade --no-cache-dir kseniaWebsocketLibrary
+```
+
+After updating the library, *Restart Home Assistant*:
+
+
 ## Security
 
 - This integration may lower the security of your alarm system. Please be aware of it!
@@ -65,6 +89,44 @@ logger:
   logs:
     custom_components.kseniaConnection: debug
 ```
+
+## Btcino Compatibility
+
+### 📌 Library Modifications
+
+**wscall.py**
+
+Inside the `ws_login` function, modify the `"PAYLOAD_TYPE"` by replacing `"UNKNOWN"` with `"USER"`.
+
+**websocketmanager.py**
+
+For secure SSL connection, replace the existing SSL context configuration with the following:
+
+```python
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)  # Force TLS 1.2
+ssl_context.check_hostname = False                   # Disable hostname verification
+ssl_context.verify_mode = ssl.CERT_NONE              # Ignore self-signed certificates
+ssl_context.set_ciphers("AES128-SHA:DEFAULT@SECLEVEL=1")  # Match server's cipher suite
+ssl_context.options |= ssl.OP_LEGACY_SERVER_CONNECT  # Allow insecure renegotiation
+ssl_context.options |= ssl.OP_NO_TLSv1_3             # Disable TLS 1.3 (server uses TLS 1.2)
+ssl_context.logging = True  # Enable SSL debug logs
+```
+
+### ⚙️ **Integration Modifications**
+
+**manifest.json**
+
+Replace the library link with the appropriately updated version.
+
+**sensor.py**
+
+Modify the partition state definitions.  
+Specifically, for **Bticino 4200C**:
+
+- `"Partition armed"` is **IA** (immediately armed) or **DA** (delayed armed).  
+- The `"Disarmed"` state remains the same (**D, disarmed**).  
+- The delay period before arming remains unchanged (**OT**).  
+
 
 ## License
 This integration is licensed under a **commercial license**. Use of this software is subject to the terms and conditions
